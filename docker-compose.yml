@@ -1,0 +1,19 @@
+version: "3.4"
+networks:
+  proxynetwork:
+    external: true
+services:
+  www:
+    image: koromerzhin/django:latest
+    volumes:
+      - ${PWD}/apps:/app
+    networks:
+      - proxynetwork
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.www-django.rule=Host(`django.lxc`, `www.django.lxc`)"
+        - "traefik.http.middlewares.wwwredirectregex.redirectregex.regex=^http://django.lxc/(.*)"
+        - "traefik.http.middlewares.wwwredirectregex.redirectregex.replacement=http://www.django.lxc/$${1}"
+        - "traefik.http.routers.www-django.entrypoints=web"
+        - "traefik.http.services.www-django.loadbalancer.server.port=8080"

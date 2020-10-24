@@ -1,0 +1,70 @@
+{
+  "projectName": "template-angular",
+  "projectOwner": "koromerzhin",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributorsPerLine": 7,
+  "commitConvention": "gitmoji",
+  "badgeTemplate": "<a href=\"#-contributors\"><img src=\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg?style=flat-square\" alt=\"All Contributors\" /></a>",
+  "contributors": [
+    {
+      "login": "koromerzhin",
+      "name": "Le TOULLEC Martial",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/308012?v=4",
+      "profile": "https://github.com/koromerzhin",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "renovate-bot",
+      "name": "Renovate Bot",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/25180681?v=4",
+      "profile": "https://renovatebot.com",
+      "contributions": [
+        "tool"
+      ]
+    },
+    {
+      "login": "dependabot[bot]",
+      "name": "dependabot[bot]",
+      "avatar_url": "https://avatars0.githubusercontent.com/in/29110?v=4",
+      "profile": "https://github.com/apps/dependabot",
+      "contributions": [
+        "code",
+        "maintenance",
+        "plugin",
+        "security",
+        "tool"
+      ]
+    },
+    {
+      "login": "dependabot-preview[bot]",
+      "name": "dependabot-preview[bot]",
+      "avatar_url": "https://avatars3.githubusercontent.com/in/2141?v=4",
+      "profile": "https://github.com/apps/dependabot-preview",
+      "contributions": [
+        "code",
+        "maintenance",
+        "plugin",
+        "review",
+        "security",
+        "tool"
+      ]
+    },
+    {
+      "login": "restyled-commits",
+      "name": "Restyled Commits",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/65077583?v=4",
+      "profile": "https://restyled.io",
+      "contributions": [
+        "tool"
+      ]
+    }
+  ]
+}

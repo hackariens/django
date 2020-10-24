@@ -1,0 +1,14 @@
+name: docker
+on:
+    - push
+jobs:
+    makefile:
+        runs-on: ubuntu-latest
+        steps:
+            - {name: Checkout, uses: actions/checkout@v2}
+            - {name: 'Docker swarm init', run: 'docker swarm init --default-addr-pool 10.20.0.0/16'}
+            - {name: 'Create proxy network', run: 'make docker-create-network'}
+            - {name: 'Show HELP', run: 'make help'}
+            - {name: 'Build containers', run: 'make docker-deploy'}
+            - {name: 'Check running stack', run: 'make docker-stack-ps'}
+            - {name: 'Check running containers', run: 'make docker-service-ls'}
