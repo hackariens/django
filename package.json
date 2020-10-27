@@ -29,7 +29,5 @@
         "readme-md-generator": "1.0.0",
         "semantic-git-commit-cli": "3.5.0"
     },
-    "dependencies": {
-        "markdownlint": "^0.21.1"
-    }
+    "dependencies": {}
 }
