@@ -30,7 +30,6 @@ jobs:
       - name: Install npm dependencies
         run: |
           make install
-          cd apps
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
