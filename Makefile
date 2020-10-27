@@ -56,7 +56,7 @@ install: ## Installation
 	@make docker-deploy -i
 
 linter-readme: node_modules ## linter README.md
-	@npm run linter-readme README.md
+	@npm run linter-markdown README.md
 
 node_modules: ## npm install
 	npm install
