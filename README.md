@@ -41,6 +41,12 @@ Hosts :
 
 127.0.0.1 django.lxc www.django.lxc
 
+## Récupérer les images docker
+
+``` sh
+make docker-image-pull
+```
+
 ## Install
 
 ``` sh

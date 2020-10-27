@@ -52,7 +52,6 @@ git-check: node_modules ## CHECK before
 	@git status
 
 install: ## Installation
-	@make docker-image-pull
 	@make docker-create-network -i
 	@make docker-deploy -i
 
