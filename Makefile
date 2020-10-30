@@ -13,6 +13,9 @@ help:
 contributors: node_modules ## Contributors
 	@npm run contributors
 
+requirements.txt: ## install requirements
+	cd apps && pip install -r requirements.txt
+
 contributors-add: node_modules ## add Contributors
 	@npm run contributors add
 
