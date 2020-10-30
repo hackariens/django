@@ -36,9 +36,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
       - name: Install dependencies
-        run: |
-          cd apps
-          pip install -r requirements.txt
+        run: make requirements.txt
       - name: linter readme.md
         run: make linter-readme
   docker:
