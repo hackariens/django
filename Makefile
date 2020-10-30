@@ -34,15 +34,8 @@ docker-image-pull: ## Get docker image
 docker-logs: ## logs docker
 	docker service logs -f --tail 100 --raw $(WWWFULLNAME)
 
-docker-service-ls: ## docker service
-	@docker service ls
-
-docker-stack-ps: ## docker stack ps
-	@docker stack ps $(STACK)
-
-docker-showstack: ## Show stack
-	@make docker-stack-ps -i
-	@make docker-service-ls -i
+docker-ls: ## docker service
+	@docker stack services $(STACK)
 
 git-commit: node_modules ## Commit data
 	npm run commit
@@ -53,6 +46,9 @@ git-check: node_modules ## CHECK before
 
 install: ## Installation
 	@make docker-deploy -i
+
+linter: node_modules ## linter
+	@make linter-readme -i
 
 linter-readme: node_modules ## linter README.md
 	@npm run linter-markdown README.md
