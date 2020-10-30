@@ -47,7 +47,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: 'Docker swarm init'
-        run: docker swarm init --default-addr-pool 10.20.0.0/16'
+        run: docker swarm init --default-addr-pool 10.20.0.0/16
       - name: 'Create proxy network'
         run: make docker-create-network'
       - name: 'Build containers'
