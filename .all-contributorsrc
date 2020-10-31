@@ -10,7 +10,8 @@
   "commit": true,
   "contributorsPerLine": 7,
   "commitConvention": "gitmoji",
-  "badgeTemplate": "<a href=\"#-contributors\"><img src=\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg?style=flat-square\" alt=\"All Contributors\" /></a>",
+  "badgeTemplate": "[![All Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg?style=flat-square)](#contributors)",
+  "contributorTemplate": "<a href=\"<%= contributor.profile %>\"><img src=\"<%= contributor.avatar_url %>\" width=\"<%= options.imageSize %>px;\" alt=\"\"/><br /><sub><b><%= contributor.name %></b></sub></a>",
   "contributors": [
     {
       "login": "koromerzhin",
@@ -31,37 +32,19 @@
       ]
     },
     {
-      "login": "dependabot[bot]",
-      "name": "dependabot[bot]",
-      "avatar_url": "https://avatars0.githubusercontent.com/in/29110?v=4",
-      "profile": "https://github.com/apps/dependabot",
-      "contributions": [
-        "code",
-        "maintenance",
-        "plugin",
-        "security",
-        "tool"
-      ]
-    },
-    {
-      "login": "dependabot-preview[bot]",
-      "name": "dependabot-preview[bot]",
-      "avatar_url": "https://avatars3.githubusercontent.com/in/2141?v=4",
-      "profile": "https://github.com/apps/dependabot-preview",
-      "contributions": [
-        "code",
-        "maintenance",
-        "plugin",
-        "review",
-        "security",
-        "tool"
-      ]
-    },
-    {
       "login": "restyled-commits",
       "name": "Restyled Commits",
       "avatar_url": "https://avatars0.githubusercontent.com/u/65077583?v=4",
       "profile": "https://restyled.io",
+      "contributions": [
+        "tool"
+      ]
+    },
+    {
+      "login": "renovate[bot]",
+      "name": "renovate[bot]",
+      "avatar_url": "https://avatars1.githubusercontent.com/in/2740?v=4",
+      "profile": "https://github.com/apps/renovate",
       "contributions": [
         "tool"
       ]
