@@ -1,33 +1,33 @@
 {
-    "name": "@koromerzhin/template-django",
-    "version": "1.0.0",
-    "description": "Templates pour la création d'un nouveau projet django",
-    "scripts": {
-        "licenses": "license-checker",
-        "linter-markdown": "markdownlint",
-        "contributors": "all-contributors",
-        "changelog": "gitmoji-changelog",
-        "readme": "readme",
-        "commit": "sgc"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/koromerzhin/template-django.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/koromerzhin/template-django/issues"
-    },
-    "homepage": "https://github.com/koromerzhin/template-django#readme",
-    "devDependencies": {
-        "all-contributors-cli": "6.14.0",
-        "gitmoji-changelog": "2.1.0",
-        "license-checker": "25.0.1",
-        "markdownlint-cli": "^0.24.0",
-        "readme-md-generator": "1.0.0",
-        "semantic-git-commit-cli": "3.5.0"
-    },
-    "dependencies": {}
+  "name": "@koromerzhin/template-django",
+  "version": "1.0.0",
+  "description": "Templates pour la création d'un nouveau projet django",
+  "scripts": {
+    "licenses": "license-checker",
+    "linter-markdown": "markdownlint",
+    "contributors": "all-contributors",
+    "changelog": "gitmoji-changelog",
+    "readme": "readme",
+    "commit": "sgc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koromerzhin/template-django.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/koromerzhin/template-django/issues"
+  },
+  "homepage": "https://github.com/koromerzhin/template-django#readme",
+  "devDependencies": {
+    "all-contributors-cli": "6.14.0",
+    "gitmoji-changelog": "2.1.0",
+    "license-checker": "25.0.1",
+    "markdownlint-cli": "0.24.0",
+    "readme-md-generator": "1.0.0",
+    "semantic-git-commit-cli": "3.5.0"
+  },
+  "dependencies": {}
 }
