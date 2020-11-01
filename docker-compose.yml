@@ -4,7 +4,7 @@ networks:
     external: true
 services:
   www:
-    image: koromerzhin/django:latest
+    image: docker pull koromerzhin/django:3.9.0
     volumes:
       - ${PWD}/apps:/app
     networks:
