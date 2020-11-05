@@ -31,7 +31,7 @@ jobs:
             ${{ runner.os }}-pip-
       - name: Install npm dependencies
         if: steps.npm-cache.outputs.cache-hit != 'true'
-        run: npm install
+        run: make node_modules
       - name: Install dependencies
         if: steps.pip-cache.outputs.cache-hit != 'true'
         run: make requirements.txt
