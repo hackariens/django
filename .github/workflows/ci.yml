@@ -12,9 +12,9 @@ jobs:
         uses: actions/checkout@v2
         run: docker swarm init --default-addr-pool 10.20.0.0/16
       - name: 'Create proxy network'
-        run: make docker-create-network
+        run: make docker create-network
       - name: 'Build containers'
-        run: make docker-deploy
+        run: make docker deploy
       - name: Set up Python
         uses: actions/setup-python@v2
         with:

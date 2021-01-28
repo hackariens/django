@@ -41,7 +41,7 @@ Hosts:
 ## Récupérer les images docker
 
 ``` sh
-make docker-image-pull
+make docker image-pull
 ```
 
 ## Install
