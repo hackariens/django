@@ -114,3 +114,9 @@ endif
 
 ssh: ## ssh
 	docker exec -ti $(WWWFULLNAME) /bin/bash
+
+inspect: ## inspect
+	@docker service inspect $(WWW)
+
+update: ## ssh
+	@docker service update $(WWW)
