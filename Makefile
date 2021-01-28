@@ -43,7 +43,7 @@ docker: ## Scripts docker
 ifeq ($(COMMAND_ARGS),create-network)
 	@docker network create --driver=overlay $(NETWORK)
 else ifeq ($(COMMAND_ARGS),deploy)
-	@docker stack deploy -c docker compose.yml $(STACK)
+	@docker stack deploy -c docker-compose.yml $(STACK)
 else ifeq ($(COMMAND_ARGS),image-pull)
 	@docker image pull koromerzhin/django:3.9.0
 else ifeq ($(COMMAND_ARGS),ls)
