@@ -35,8 +35,7 @@ docker swarm
 
 Hosts:
 
-- 127.0.0.1 django.lxc
-- 127.0.0.1 www.django.lxc
+- django.traefik.me
 
 ## Récupérer les images docker
 
