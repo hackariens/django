@@ -25,7 +25,7 @@ SECRET_KEY = 's=48^_qb*nq6)z_g1goq@j0*7m%___7knmyqg1z0%jlx(vm&07'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django.lxc']
+ALLOWED_HOSTS = ['django.traefik.me']
 
 
 # Application definition

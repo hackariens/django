@@ -12,8 +12,7 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.www-django.rule=Host(`django.lxc`, `www.django.lxc`)"
-        - "traefik.http.middlewares.djangoredirectregex.redirectregex.regex=^http://django.lxc/(.*)"
-        - "traefik.http.middlewares.djangoredirectregex.redirectregex.replacement=http://www.django.lxc/$${1}"
-        - "traefik.http.routers.www-django.entrypoints=web"
-        - "traefik.http.services.www-django.loadbalancer.server.port=8080"
+        - "traefik.http.routers.django.rule=Host(`django.traefik.me`)"
+        - "traefik.http.routers.django-tls.tls.domains[0].main=django.traefik.me"
+        - "traefik.http.routers.django-tls.tls.domains[0].sans=django-*.traefik.me"
+        - "traefik.http.services.django.loadbalancer.server.port=8080"
