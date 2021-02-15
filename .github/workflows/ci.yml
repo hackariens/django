@@ -42,4 +42,4 @@ jobs:
         if: steps.pip-cache.outputs.cache-hit != 'true'
         run: make requirements.txt
       - name: linter readme.md
-        run: make linter-readme
+        run: make linter readme
