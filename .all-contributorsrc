@@ -58,7 +58,8 @@
         "bug",
         "maintenance",
         "platform",
-        "review"
+        "review",
+        "tool"
       ]
     }
   ]
