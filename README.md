@@ -74,10 +74,10 @@ make help
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
-Feel free to check [issues page](https://github.com/koromerzhin/template-django/issues).
-You can also take a look at the [contributing guide](
-    https://github.com/koromerzhin/template-django/blob/develop/CONTRIBUTING.md
-    ).
+Feel free to check
+[issues page](https://github.com/koromerzhin/template-django/issues).
+You can also take a look at the
+[contributing guide](https://github.com/koromerzhin/template-django/blob/develop/CONTRIBUTING.md).
 
 ## Show your support
 
@@ -87,13 +87,13 @@ Give a ⭐️ if this project helped you!
 
 Copyright © 2019 [koromerzhin](https://github.com/koromerzhin).
 
-This project is [MIT](
-    https://github.com/koromerzhin/template-django/blob/develop/LICENSE
-    ) licensed.
+This project is
+[MIT](https://github.com/koromerzhin/template-django/blob/develop/LICENSE) licensed.
 
 ## ✨ Contributors
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Thanks goes to these wonderful people
+([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -112,7 +112,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors)
+This project follows the
+[all-contributors](https://github.com/all-contributors/all-contributors)
 specification. Contributions of any kind welcome!
 
 ---
