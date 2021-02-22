@@ -2,6 +2,9 @@ version: "3.4"
 networks:
   proxynetwork:
     external: true
+  net:
+    driver: overlay
+    attachable: true
 
 volumes:
   mariadb_data:
