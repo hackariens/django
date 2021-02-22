@@ -2,13 +2,61 @@ version: "3.4"
 networks:
   proxynetwork:
     external: true
+
+volumes:
+  mariadb_data:
 services:
+  mailhog:
+    image: mailhog/mailhog
+    networks:
+      - net
+      - proxynetwork
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.mailhog-drupal.rule=Host(`mailhog-drupal.traefik.me`)"
+        - "traefik.http.routers.mailhog-drupal-tls.tls.domains[0].main=mailhog-drupal.traefik.me"
+        - "traefik.http.routers.mailhog-drupal-tls.tls.domains[0].sans=mailhog-drupal-*.traefik.me"
+        - "traefik.http.services.mailhog-drupal.loadbalancer.server.port=8025"
+  mariadb:
+    image: mariadb:10.5.6
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: core
+      MYSQL_USER: siteinternet
+      MYSQL_PASSWORD: password
+      TZ: Europe/Paris
+    networks:
+      - net
+    deploy:
+      labels:
+        - "traefik.enable=false"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mariadb
+      MYSQL_ROOT_PASSWORD: example
+    depends_on:
+      - mariadb
+    networks:
+      - net
+      - proxynetwork
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.phpmyadmin-drupal.rule=Host(`phpmyadmin-drupal.traefik.me`)"
+        - "traefik.http.routers.phpmyadmin-drupal-tls.tls.domains[0].main=phpmyadmin-drupal.traefik.me"
+        - "traefik.http.routers.phpmyadmin-drupal-tls.tls.domains[0].sans=phpmyadmin-drupal-*.traefik.me"
+        - "traefik.http.services.phpmyadmin-drupal.loadbalancer.server.port=80"
   www:
     image: koromerzhin/django:3.9.0
     volumes:
       - ${PWD}/apps:/app
     networks:
       - proxynetwork
+    depends_on:
+      - mariadb
+      - mailhog
     deploy:
       labels:
         - "traefik.enable=true"
