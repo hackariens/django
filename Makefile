@@ -54,7 +54,7 @@ else ifeq ($(COMMAND_ARGS),image-pull)
 	@docker image pull koromerzhin/django:3.9.0
 	@docker image pull phpmyadmin/phpmyadmin
 	@docker image pull mailhog/mailhog
-	@docker image pull mariadb:10.5.6
+	@docker image pull mariadb:10.5.8
 else ifeq ($(COMMAND_ARGS),ls)
 	@docker stack services $(STACK)
 else ifeq ($(COMMAND_ARGS),stop)
