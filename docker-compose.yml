@@ -22,7 +22,7 @@ services:
         - "traefik.http.routers.mailhog-drupal-tls.tls.domains[0].sans=mailhog-drupal-*.traefik.me"
         - "traefik.http.services.mailhog-drupal.loadbalancer.server.port=8025"
   mariadb:
-    image: mariadb:10.5.8
+    image: mariadb:10.5.9
     environment:
       MYSQL_ROOT_PASSWORD: example
       MYSQL_DATABASE: core
