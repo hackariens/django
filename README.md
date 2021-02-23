@@ -31,12 +31,8 @@ docker swarm
 Hosts:
 
 - django.traefik.me
-
-## Récupérer les images docker
-
-``` sh
-make docker image-pull
-```
+- mailhog-django.traefik.me
+- phpmyadmin-django.traefik.me
 
 ## Install
 
