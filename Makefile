@@ -95,7 +95,7 @@ else
 	@echo "make logs ARGUMENT"
 	@echo "---"
 	@echo "stack: logs stack"
-	@echo "www: REDIS"
+	@echo "www: WWW"
 endif
 
 linter: node_modules ## Scripts Linter
