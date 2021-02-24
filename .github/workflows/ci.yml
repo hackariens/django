@@ -16,6 +16,10 @@ jobs:
         run: make docker create-network
       - name: 'Build containers'
         run: make docker deploy
+      - name: 'sleep'
+        run: make sleep 60
+      - name: 'docker ls'
+        run: make docker ls
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
