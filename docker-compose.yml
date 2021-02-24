@@ -10,7 +10,7 @@ volumes:
   mariadb_data:
 services:
   mailhog:
-    image: mailhog/mailhog
+    image: mailhog/mailhog:v1.0.1
     networks:
       - net
       - proxynetwork
@@ -35,7 +35,7 @@ services:
       labels:
         - "traefik.enable=false"
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+    image: phpmyadmin/phpmyadmin:5.1.0
     environment:
       PMA_HOST: mariadb
       MYSQL_ROOT_PASSWORD: example
