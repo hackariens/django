@@ -7,8 +7,7 @@
     "linter-markdown": "markdownlint",
     "contributors": "all-contributors",
     "changelog": "gitmoji-changelog",
-    "readme": "readme",
-    "commit": "sgc"
+    "readme": "readme"
   },
   "repository": {
     "type": "git",
@@ -26,8 +25,7 @@
     "gitmoji-changelog": "2.2.0",
     "license-checker": "25.0.1",
     "markdownlint-cli": "0.26.0",
-    "readme-md-generator": "1.0.0",
-    "semantic-git-commit-cli": "3.7.0"
+    "readme-md-generator": "1.0.0"
   },
   "dependencies": {}
 }
