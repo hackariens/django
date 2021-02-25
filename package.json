@@ -6,7 +6,6 @@
     "licenses": "license-checker",
     "linter-markdown": "markdownlint",
     "contributors": "all-contributors",
-    "changelog": "gitmoji-changelog",
     "readme": "readme"
   },
   "repository": {
@@ -22,7 +21,6 @@
   "homepage": "https://github.com/koromerzhin/template-django#readme",
   "devDependencies": {
     "all-contributors-cli": "6.20.0",
-    "gitmoji-changelog": "2.2.0",
     "license-checker": "25.0.1",
     "markdownlint-cli": "0.26.0",
     "readme-md-generator": "1.0.0"
