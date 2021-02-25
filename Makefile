@@ -4,8 +4,9 @@ isDocker := $(shell docker info > /dev/null 2>&1 && echo 1)
 STACK         := django
 NETWORK       := proxynetwork
 
-WWW           := $(STACK)_www
-WWWFULLNAME   := $(WWW).1.$$(docker service ps -f 'name=$(PRWWWOXY)' $(WWW) -q --no-trunc | head -n1)
+WWW         := $(STACK)_www
+WWWFULLNAME := $(WWW).1.$$(docker service ps -f 'name=$(PRWWWOXY)' $(WWW) -q --no-trunc | head -n1)
+WWWRUN      := docker run --rm -v ${PWD}/apps:/app koromerzhin/django:3.9.0
 
 
 SUPPORTED_COMMANDS := contributors docker logs git linter sleep
@@ -25,11 +26,12 @@ ifeq ($(isDocker), 0)
 	exit 1
 endif
 
+.PHONY: requirements
+apps/requirements.txt:
+	$(WWWRUN) pip -install -r requirements.txt
+
 node_modules:
 	@npm install
-
-requirements.txt: ## install requirements
-	cd apps && pip install -r requirements.txt
 
 contributors: node_modules ## Contributors
 ifeq ($(COMMAND_ARGS),add)
@@ -85,7 +87,7 @@ else
 	@echo "status: status"
 endif
 
-install: ## Installation
+install: apps/requirements.txt ## Installation
 	@make docker deploy -i
 
 logs: isdocker ## Scripts logs
