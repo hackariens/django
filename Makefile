@@ -82,7 +82,12 @@ else
 	@echo "status: status"
 endif
 
-install: ## Installation
+dump:
+	@mkdir dump
+
+folders: dump ## Create folder
+
+install: folders ## Installation
 	@make docker deploy -i
 
 logs: isdocker ## Scripts logs
