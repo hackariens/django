@@ -3,3 +3,4 @@
 # composer.lock
 node_modules
 apps/node_modules/
+apps/apps/__pycache__
