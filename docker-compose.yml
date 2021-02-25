@@ -9,6 +9,14 @@ networks:
 volumes:
   mariadb_data:
 services:
+  exec:
+    image: koromerzhin/django:3.9.0
+    volumes:
+      - ${PWD}/apps:/app
+    command: sh -c "pip -install -r requirements.txt"
+    deploy:
+      labels:
+        - "traefik.enable=false"
   mailhog:
     image: mailhog/mailhog:v1.0.1
     networks:
