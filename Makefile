@@ -6,7 +6,6 @@ NETWORK       := proxynetwork
 
 WWW         := $(STACK)_www
 WWWFULLNAME := $(WWW).1.$$(docker service ps -f 'name=$(PRWWWOXY)' $(WWW) -q --no-trunc | head -n1)
-WWWRUN      := docker run --rm -v ${PWD}/apps:/app koromerzhin/django:3.9.0
 
 
 SUPPORTED_COMMANDS := contributors docker logs git linter sleep
@@ -25,10 +24,6 @@ ifeq ($(isDocker), 0)
 	@echo "Docker is not launch"
 	exit 1
 endif
-
-.PHONY: requirements
-apps/requirements.txt:
-	$(WWWRUN) pip -install -r requirements.txt
 
 node_modules:
 	@npm install
@@ -87,7 +82,7 @@ else
 	@echo "status: status"
 endif
 
-install: apps/requirements.txt ## Installation
+install: ## Installation
 	@make docker deploy -i
 
 logs: isdocker ## Scripts logs
