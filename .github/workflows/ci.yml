@@ -1,0 +1,51 @@
+name: Continuous Integration
+on: [push]
+jobs:
+  tests:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: [ubuntu-20.04]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cache npm packages
+        id: npm-cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node
+      - name: Install npm dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: make node_modules
+      - uses: actions/cache@v2
+        id: pip-cache
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: 'Docker swarm init'
+        run: docker swarm init --default-addr-pool 10.20.0.0/16
+      - name: 'Create proxy network'
+        run: make docker create-network
+      - name: 'Image pull'
+        run: make docker image-pull
+      - name: 'Build containers'
+        run: make docker deploy
+      - name: 'sleep'
+        run: make sleep 60
+      - name: 'docker ls'
+        run: make docker ls
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        if: steps.pip-cache.outputs.cache-hit != 'true'
+        run: make requirements.txt
+      - name: linter readme.md
+        run: make linter readme

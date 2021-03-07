@@ -1,0 +1,82 @@
+version: "3.4"
+networks:
+  proxynetwork:
+    external: true
+  net:
+    driver: overlay
+    attachable: true
+
+volumes:
+  mariadb_data:
+services:
+  exec:
+    image: koromerzhin/django:3.9.0
+    volumes:
+      - ${PWD}/apps:/app
+    command: sh -c "pip -install -r requirements.txt"
+    deploy:
+      restart_policy:
+        condition: none
+      labels:
+        - "traefik.enable=false"
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    networks:
+      - net
+      - proxynetwork
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.mailhog-django.rule=Host(`mailhog-django.traefik.me`)"
+        - "traefik.http.routers.mailhog-django-tls.tls.domains[0].main=mailhog-django.traefik.me"
+        - "traefik.http.routers.mailhog-django-tls.tls.domains[0].sans=mailhog-django-*.traefik.me"
+        - "traefik.http.services.mailhog-django.loadbalancer.server.port=8025"
+  mariadb:
+    image: mariadb:10.5.9
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: core
+      MYSQL_USER: siteinternet
+      MYSQL_PASSWORD: password
+      TZ: Europe/Paris
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ${PWD}/dump:/dump
+    networks:
+      - net
+    deploy:
+      labels:
+        - "traefik.enable=false"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.1.0
+    environment:
+      PMA_HOST: mariadb
+      MYSQL_ROOT_PASSWORD: example
+    depends_on:
+      - mariadb
+    networks:
+      - net
+      - proxynetwork
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.phpmyadmin-django.rule=Host(`phpmyadmin-django.traefik.me`)"
+        - "traefik.http.routers.phpmyadmin-django-tls.tls.domains[0].main=phpmyadmin-django.traefik.me"
+        - "traefik.http.routers.phpmyadmin-django-tls.tls.domains[0].sans=phpmyadmin-django-*.traefik.me"
+        - "traefik.http.services.phpmyadmin-django.loadbalancer.server.port=80"
+  www:
+    image: koromerzhin/django:3.9.0
+    volumes:
+      - ${PWD}/apps:/app
+    networks:
+      - proxynetwork
+    depends_on:
+      - mariadb
+      - mailhog
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.django.rule=Host(`django.traefik.me`)"
+        - "traefik.http.routers.django-tls.tls.domains[0].main=django.traefik.me"
+        - "traefik.http.routers.django-tls.tls.domains[0].sans=django-*.traefik.me"
+        - "traefik.http.services.django.loadbalancer.server.port=8080"

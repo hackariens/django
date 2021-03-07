@@ -1,0 +1,33 @@
+{
+  "name": "@koromerzhin/template-django",
+  "version": "1.0.0",
+  "description": "Templates pour la création d'un nouveau projet django",
+  "scripts": {
+    "licenses": "license-checker",
+    "linter-markdown": "markdownlint",
+    "contributors": "all-contributors",
+    "readme": "readme",
+    "changelog": "changelog",
+    "jscpd": "jscpd apps"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koromerzhin/template-django.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/koromerzhin/template-django/issues"
+  },
+  "homepage": "https://github.com/koromerzhin/template-django#readme",
+  "devDependencies": {
+    "all-contributors-cli": "6.20.0",
+    "generate-changelog": "1.8.0",
+    "jscpd": "3.3.25",
+    "license-checker": "25.0.1",
+    "markdownlint-cli": "0.27.1",
+    "readme-md-generator": "1.0.0"
+  },
+  "dependencies": {}
+}
