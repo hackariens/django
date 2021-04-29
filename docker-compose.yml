@@ -32,7 +32,7 @@ services:
         - "traefik.http.routers.mailhog-django-tls.tls.domains[0].sans=mailhog-django-*.traefik.me"
         - "traefik.http.services.mailhog-django.loadbalancer.server.port=8025"
   mariadb:
-    image: mariadb:10.5.9
+    image: mariadb:10.6.0
     environment:
       MYSQL_ROOT_PASSWORD: example
       MYSQL_DATABASE: core
