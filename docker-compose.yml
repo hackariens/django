@@ -27,7 +27,7 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.mailhog-django.rule=Host(`mailhog-django.traefik.me`)"
+        - "traefik.http.routers.mailhog-django.rule=HostRegexp(`mailhog-django.traefik.me`, `mailhog-django.{ip:.*}.traefik.me`)"
         - "traefik.http.routers.mailhog-django-tls.tls.domains[0].main=mailhog-django.traefik.me"
         - "traefik.http.routers.mailhog-django-tls.tls.domains[0].sans=mailhog-django-*.traefik.me"
         - "traefik.http.services.mailhog-django.loadbalancer.server.port=8025"
@@ -60,7 +60,7 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.phpmyadmin-django.rule=Host(`phpmyadmin-django.traefik.me`)"
+        - "traefik.http.routers.phpmyadmin-django.rule=HostRegexp(`phpmyadmin-django.traefik.me`, `phpmyadmin-django.{ip:.*}.traefik.me`)"
         - "traefik.http.routers.phpmyadmin-django-tls.tls.domains[0].main=phpmyadmin-django.traefik.me"
         - "traefik.http.routers.phpmyadmin-django-tls.tls.domains[0].sans=phpmyadmin-django-*.traefik.me"
         - "traefik.http.services.phpmyadmin-django.loadbalancer.server.port=80"
@@ -76,7 +76,7 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.django.rule=Host(`django.traefik.me`)"
+        - "traefik.http.routers.django.rule=HostRegexp(`django.traefik.me`, `django.{ip:.*}.traefik.me`)"
         - "traefik.http.routers.django-tls.tls.domains[0].main=django.traefik.me"
         - "traefik.http.routers.django-tls.tls.domains[0].sans=django-*.traefik.me"
         - "traefik.http.services.django.loadbalancer.server.port=8080"
