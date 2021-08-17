@@ -15,6 +15,9 @@ dump:
 
 folders: dump ## Create folder
 
+requirements.txt: ## install requirements
+	cd apps && pip install -r requirements.txt
+
 install: folders ## Installation
 	@make docker deploy -i
 
