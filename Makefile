@@ -1,6 +1,6 @@
 include make/general/Makefile
 STACK         := django
-NETWORK       := proxynetwork
+NETWORK       := proxylampy
 include make/docker/Makefile
 
 SUPPORTED_COMMANDS := linter
