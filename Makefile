@@ -10,15 +10,10 @@ ifneq "$(SUPPORTS_MAKE_ARGS)" ""
   $(eval $(COMMAND_ARGS):;@:)
 endif
 
-dump:
-	@mkdir dump
-
-folders: dump ## Create folder
-
 requirements.txt: ## install requirements
 	cd apps && pip install -r requirements.txt
 
-install: folders ## Installation
+install: ## Installation
 	@make docker deploy -i
 
 linter: node_modules ### Scripts Linter
