@@ -1,6 +1,6 @@
 version: "3.4"
 networks:
-  proxynetwork:
+  proxylampy:
     external: true
   net:
     driver: overlay
@@ -23,7 +23,7 @@ services:
     image: mailhog/mailhog:v1.0.1
     networks:
       - net
-      - proxynetwork
+      - proxylampy
     deploy:
       labels:
         - "traefik.enable=true"
@@ -56,7 +56,7 @@ services:
       - mariadb
     networks:
       - net
-      - proxynetwork
+      - proxylampy
     deploy:
       labels:
         - "traefik.enable=true"
@@ -69,7 +69,7 @@ services:
     volumes:
       - ${PWD}/apps:/app
     networks:
-      - proxynetwork
+      - proxylampy
     depends_on:
       - mariadb
       - mailhog
