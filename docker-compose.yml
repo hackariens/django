@@ -6,8 +6,6 @@ networks:
     driver: overlay
     attachable: true
 
-volumes:
-  mariadb_data:
 services:
   exec:
     image: koromerzhin/django:3.9.0
