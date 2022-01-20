@@ -2,6 +2,8 @@ version: "3.4"
 networks:
   proxylampy:
     external: true
+  serverlampy:
+    external: true
   net:
     driver: overlay
     attachable: true
@@ -12,6 +14,12 @@ services:
     volumes:
       - ${PWD}/apps:/app
     command: sh -c "pip -install -r requirements.txt"
+    networks:
+      - serverlampy
+      - proxylampy
+    depends_on:
+      - mariadb
+      - mailhog
     deploy:
       restart_policy:
         condition: none
@@ -22,6 +30,7 @@ services:
     volumes:
       - ${PWD}/apps:/app
     networks:
+      - serverlampy
       - proxylampy
     depends_on:
       - mariadb
