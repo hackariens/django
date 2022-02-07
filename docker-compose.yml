@@ -10,7 +10,7 @@ networks:
 
 services:
   exec:
-    image: koromerzhin/django:3.9.0
+    image: koromerzhin/django:4.0.2
     volumes:
       - ${PWD}/apps:/app
     command: sh -c "pip -install -r requirements.txt"
@@ -26,7 +26,7 @@ services:
       labels:
         - "traefik.enable=false"
   www:
-    image: koromerzhin/django:3.9.0
+    image: koromerzhin/django:4.0.2
     volumes:
       - ${PWD}/apps:/app
     networks:
