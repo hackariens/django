@@ -9,24 +9,10 @@ networks:
     attachable: true
 
 services:
-  exec:
-    image: koromerzhin/django:4.0.2
-    volumes:
-      - ${PWD}/apps:/app
-    command: sh -c "pip -install -r requirements.txt"
-    networks:
-      - serverlampy
-      - proxylampy
-    depends_on:
-      - mariadb
-      - mailhog
-    deploy:
-      restart_policy:
-        condition: none
-      labels:
-        - "traefik.enable=false"
   www:
     image: koromerzhin/django:4.0.2
+    command: >
+      sh -c "pip -install -r requirements.txt && python manage.py runserver 0.0.0.0:8080"
     volumes:
       - ${PWD}/apps:/app
     networks:
@@ -38,5 +24,7 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.django.rule=HostRegexp(`django.traefik.me`, `django.{ip:.*}.traefik.me`)"
+        - "traefik.http.routers.django.rule=Host(`django.traefik.me`)"
+        - "traefik.http.routers.django-tls.tls.domains[0].main=django.traefik.me"
+        - "traefik.http.routers.django.tls=true"
         - "traefik.http.services.django.loadbalancer.server.port=8080"
