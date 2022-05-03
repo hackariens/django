@@ -34,6 +34,14 @@ Hosts:
 - mailhog-django.traefik.me
 - phpmyadmin-django.traefik.me
 
+## Download
+
+```sh
+git clone git@github.com:koromerzhin/template-django.git template-django
+cd template-django
+git submodule update --init
+```
+
 ## Install
 
 ``` sh
