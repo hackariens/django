@@ -40,6 +40,10 @@ git clone --recurse-submodules git@github.com:hackariens/django.git django
 cd django
 ```
 
+## Environnment
+
+Edit .env with .env.example
+
 ## Install
 
 ``` sh
