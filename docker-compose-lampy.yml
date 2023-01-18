@@ -1,0 +1,18 @@
+version: "3.4"
+networks:
+  proxylampy:
+    external: true
+  serverlampy:
+    external: true
+services:
+  www:
+    networks:
+      - serverlampy
+      - proxylampy
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.django.rule=Host(`django.traefik.me`)"
+        - "traefik.http.routers.django-tls.tls.domains[0].main=django.traefik.me"
+        - "traefik.http.routers.django.tls=true"
+        - "traefik.http.services.django.loadbalancer.server.port=8080"

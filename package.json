@@ -1,27 +1,27 @@
 {
-  "name": "@koromerzhin/template-django",
+  "name": "@hackariens/django",
   "version": "1.0.0",
   "description": "Templates pour la création d'un nouveau projet django",
   "scripts": {
-    "licenses": "license-checker",
-    "linter-markdown": "markdownlint",
-    "contributors": "all-contributors",
-    "readme": "readme",
-    "changelog": "changelog",
-    "jscpd": "jscpd apps"
+    "docker:deploy": "korojscommands docker_deploy",
+    "docker:getpull-image": "korojscommands docker_getpull-image",
+    "docker:ls": "korojscommands docker_ls",
+    "docker:waiting": "korojscommands docker_waiting --status running --container www",
+    "exec": "npm-run-all docker:getpull-image docker:deploy docker:waiting docker:ls",
+    "lint:markdown": "markdownlint README.md"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/koromerzhin/template-django.git"
+    "url": "git+https://github.com/hackariens/django.git"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/koromerzhin/template-django/issues"
+    "url": "https://github.com/hackariens/django/issues"
   },
-  "homepage": "https://github.com/koromerzhin/template-django#readme",
+  "homepage": "https://github.com/hackariens/django#readme",
   "dependencies": {
-    "koromerzhin-dependencies": "^1.3.0"
+    "korojscommands": "^1.2.7"
   }
 }
