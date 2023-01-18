@@ -46,6 +46,12 @@ cd django
 npm install
 ```
 
+## Launch
+
+``` sh
+npm run exec
+```
+
 ## Author
 
 👤 **koromerzhin**
