@@ -50,6 +50,12 @@ Edit .env with .env.example
 npm install
 ```
 
+## Create folders
+
+```sh
+npm run create:folders
+```
+
 ## Create apps
 
 ```sh
