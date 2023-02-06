@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Templates pour la création d'un nouveau projet django",
   "scripts": {
-    "create:apps": "docker container run -v $(pwd)/:/app -w=/app --user $(id -u):$(id -g) $(npx korojscommands docker_get-image --key www) ./app/install.sh",
+    "create:apps": "docker container run -v $(pwd)/:/app -w=/app --user $(id -u):$(id -g) $(npx korojscommands docker_get-image --key www) ./install.sh",
     "docker:deploy": "korojscommands docker_deploy",
     "docker:getpull-image": "korojscommands docker_getpull-image",
     "docker:ls": "korojscommands docker_ls",
