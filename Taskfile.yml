@@ -1,0 +1,151 @@
+version: 3
+
+# Taskfile principal - Tâches globales et inclusions
+# Charge automatiquement les variables depuis le fichier .env s'il existe
+dotenv: [ '.env' ]
+
+includes:
+  docker: ./taskfiles/docker/Taskfile.yml
+  utils: ./taskfiles/utils/Taskfile.yml
+  env: ./taskfiles/env/Taskfile.yml
+  nodejs: ./taskfiles/nodejs/Taskfile.yml
+  download: ./taskfiles/download/Taskfile.yml
+
+vars:
+  # Variables avec valeurs par défaut depuis .env ou valeurs de fallback
+  PROJECT_NAME: '{{.PROJECT_NAME | default "django"}}'
+  PROJECT_VERSION: '1.0.0'
+  ENVIRONMENT: '{{.ENVIRONMENT | default "development"}}'
+  STACK_NAME: '{{.STACK | default "django"}}'
+  FOLDERSQL: '{{.FOLDERSQL | default "database_init"}}'
+  FILESQL: '{{.FILESQL | default "dump.sql"}}'
+  FOLDERLAMPY: '{{.FOLDERLAMPY | default "lampy"}}'
+  SERVERNAME: '{{.SERVERNAME | default "django.traefik.me"}}'
+  DOCKERCOMPOSEFILE: '{{.DOCKERCOMPOSEFILE | default "docker-compose.yml"}}'
+
+tasks:
+  default:
+    desc: "Affiche l'aide et les tâches disponibles"
+    silent: true
+    cmds:
+    - echo "🛠️  Collection de Taskfiles pour le développement"
+    - echo ""
+    - echo "Tâches globales disponibles :"
+    - task --list
+    - echo ""
+
+  info:
+    desc: "Affiche les informations du projet avec les variables d'environnement"
+    silent: true
+    cmds:
+    - |
+      echo "🛠️  {{.PROJECT_NAME}} v{{.PROJECT_VERSION}} - Collection de Taskfiles"
+      echo "Environnement: {{.ENVIRONMENT}}"
+
+  help:
+    desc: "Affiche l'aide détaillée"
+    aliases: [ h ]
+    cmds:
+    - task: default
+
+  django:copysql:
+    desc: "Copie le fichier SQL de dump dans le dossier django"
+    silent: true
+    cmds:
+    - task: utils:file:copy
+      vars:
+        SOURCE_FILE: ./{{.FOLDERSQL}}/{{.FILESQL}}
+        DEST_DIR: "{{.FOLDERLAMPY}}/mariadb_init/"
+        FORCE: true
+
+  django:getpull-image:
+    desc: "Télécharge les images Docker définies dans le docker-compose.yml"
+    silent: true
+    cmds:
+    - task: docker:images:pull
+      vars:
+        COMPOSE_FILE: "{{.DOCKERCOMPOSEFILE}}"
+
+  django:deploy:
+    desc: "Déploie les stacks Docker définies dans les fichiers docker-compose"
+    silent: true
+    cmds:
+    - task: docker:stack:deploy
+      vars:
+        COMPOSE_FILE: "{{.DOCKERCOMPOSEFILE}}"
+        STACK_NAME: "{{.STACK_NAME}}"
+
+  django:waiting:
+    desc: "Attend que les services soient opérationnels"
+    silent: true
+    cmds:
+    - task: docker:stack:check:containers:ready
+      vars:
+        CONTAINERS: "www"
+        STACK_NAME: "{{.STACK_NAME}}"
+
+  django:ls:
+    desc: "Liste les stacks et services Docker"
+    silent: true
+    cmds:
+    - task: docker:stack:services
+      vars:
+        STACK_NAME: "{{.STACK_NAME}}"
+    
+  create:apps:
+    desc: "Créer une instance pour django"
+    silent: true
+    cmds:
+    - mkdir -p .docker-cache/pip
+    - docker run --rm -u $(id -u):$(id -g) -v $(pwd):/app -v $(pwd)/.docker-cache/pip:/tmp/.cache/pip -e PIP_CACHE_DIR=/tmp/.cache/pip -w /app python:3.11.4 ./install.sh
+
+  django:configure:
+    desc: "Configure Django settings (ALLOWED_HOSTS)"
+    silent: true
+    cmds:
+    - |
+      SERVER="{{.SERVERNAME}}"
+      SETTINGS="apps/apps/settings.py"
+      # Si la liste est vide
+      if grep -q "^ALLOWED_HOSTS = \[\]" $SETTINGS; then
+        echo "ALLOWED_HOSTS vide, ajout direct."
+        sed -i "s/^ALLOWED_HOSTS = \[\]/ALLOWED_HOSTS = ['$SERVER']/" $SETTINGS
+      # Si la valeur n'est pas présente
+      elif ! grep -q "'$SERVER'" $SETTINGS; then
+        echo "Ajout de $SERVER à ALLOWED_HOSTS existant..."
+        sed -i "/^ALLOWED_HOSTS = \[/ s/\(\[.*\)\]/\1, '$SERVER']/" $SETTINGS
+      else
+        echo "$SERVER déjà présent dans ALLOWED_HOSTS"
+      fi
+
+    
+
+  django:exec:
+    desc: "Exécute une commande dans un conteneur en cours d'exécution"
+    cmds:
+    - task: django:copysql
+    - task: django:getpull-image
+    - task: django:deploy
+    - task: django:waiting
+    - task: django:ls
+
+  django:bash:
+    desc: "Ouvre un shell bash dans le conteneur www"
+    cmds:
+    - task: docker:stack:shell
+      vars:
+        STACK_NAME: "django"
+        SERVICE_NAME: "www"
+
+  django:cmd-exec:
+    desc: "Affiche les informations Symfony"
+    silent: true
+    vars:
+      INTERACTIVE: '{{.INTERACTIVE | default "true"}}'
+    cmds:
+    - task: docker:stack:exec
+      vars:
+        STACK_NAME: "django"
+        SERVICE_NAME: "www"
+        COMMAND: "{{.COMMAND}}"
+        INTERACTIVE: "{{.INTERACTIVE}}"
