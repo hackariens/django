@@ -2,3 +2,5 @@
 /apps
 .env
 /.venv
+docker-compose-*.yml
+!docker-compose-lampy.yml
