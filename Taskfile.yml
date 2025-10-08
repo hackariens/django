@@ -45,6 +45,7 @@ tasks:
   help:
     desc: "Affiche l'aide détaillée"
     aliases: [ h ]
+    silent: true
     cmds:
     - task: default
 
@@ -91,7 +92,7 @@ tasks:
     - task: docker:stack:services
       vars:
         STACK_NAME: "{{.STACK_NAME}}"
-    
+
   create:apps:
     desc: "Créer une instance pour django"
     silent: true
@@ -118,10 +119,9 @@ tasks:
         echo "$SERVER déjà présent dans ALLOWED_HOSTS"
       fi
 
-    
-
   django:exec:
     desc: "Exécute une commande dans un conteneur en cours d'exécution"
+    silent: true
     cmds:
     - task: django:copysql
     - task: django:getpull-image
@@ -131,6 +131,7 @@ tasks:
 
   django:bash:
     desc: "Ouvre un shell bash dans le conteneur www"
+    silent: true
     cmds:
     - task: docker:stack:shell
       vars:
