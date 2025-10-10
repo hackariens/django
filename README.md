@@ -3,9 +3,7 @@
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
 ![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/hackariens/django/graphs/commit-activity)
-![Continuous Integration](https://github.com/hackariens/django/workflows/ci/badge.svg?branch=develop)
-
-</p>
+![Continuous Integration](https://github.com/hackariens/django/actions/workflows/ci.yml/badge.svg?branch=develop)
 
 > Templates pour la création d'un nouveau projet django
 
@@ -19,9 +17,8 @@
 
 Software:
 
-- npm
-- docker
-- repository koromerzhin/lampy
+- [task](https://taskfile.dev/)
+- [nodejs](https://nodejs.org/)
 
 Config:
 
@@ -36,7 +33,7 @@ Hosts:
 ## Download
 
 ```sh
-git clone --recurse-submodules git@github.com:hackariens/django.git django
+git clone --recursive git@github.com:hackariens/django.git django
 cd django
 ```
 
@@ -44,22 +41,16 @@ cd django
 
 Edit .env with .env.example
 
-## Install
-
-``` sh
-npm install
-```
-
 ## Create folders
 
 ```sh
-npm run create:folders
+task create:apps
 ```
 
 ## Create apps
 
 ```sh
-npm run create:apps
+task django:exec
 ```
 
 ## Launch
