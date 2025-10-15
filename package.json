@@ -1,6 +1,6 @@
 {
   "name": "@hackariens/django",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Templates pour la création d'un nouveau projet django",
   "scripts": {
     "lint:markdown": "markdownlint README.md",
