@@ -6,6 +6,16 @@ networks:
     external: true
 services:
   www:
+    image: python:3.11.4
+    working_dir: /app
+    command: >
+      bash -c "source /.venv/bin/activate && pip install -r requirements.txt && python manage.py runserver 0.0.0.0:8080"
+    volumes:
+      - ${PWD}/.venv:/.venv:delegated
+      - ${PWD}/apps:/app:delegated
+    depends_on:
+      - mariadb
+      - mailhog
     networks:
       - serverlampy
       - proxylampy
