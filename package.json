@@ -19,6 +19,7 @@
   "homepage": "https://github.com/hackariens/django#readme",
   "devDependencies": {
     "cypress": "^15.3.0",
+    "dotenv": "^17.2.3",
     "jscpd": "^4.0.5",
     "markdownlint-cli": "^0.45.0",
     "release-it": "^19.0.5",
