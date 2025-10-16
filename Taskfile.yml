@@ -20,7 +20,7 @@ vars:
   FILESQL: '{{.FILESQL | default "dump.sql"}}'
   FOLDERLAMPY: '{{.FOLDERLAMPY | default "lampy"}}'
   SERVERNAME: '{{.SERVERNAME | default "django.traefik.me"}}'
-  DOCKERCOMPOSEFILE: '{{.DOCKERCOMPOSEFILE | default "docker-compose.yml"}}'
+  DOCKERCOMPOSEFILE: '{{.DOCKERCOMPOSEFILE | default "docker-compose-lampy.yml"}}'
 
 tasks:
   default:
