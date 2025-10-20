@@ -36,11 +36,6 @@ tasks:
 
   lint:all:
     desc: "Exécute tous les linters disponibles"
-    preconditions:
-      - sh: command -v actionlint
-        msg: "actionlint n'est pas installé. Veuillez l'installer"
-      - sh: command -v docker
-        msg: "Docker n'est pas installé. Veuillez l'installer"
     cmds:
     - task: lint:yml
       vars:
@@ -48,8 +43,8 @@ tasks:
     - task: lint:md
       vars:
         IGNORE_DIR: "taskfiles"
-    - docker compose -f {{.DOCKERCOMPOSEFILE}} config 1>/dev/null
-    - actionlint .github/workflows/ci.yml
+    - task: lint:action
+    - task: lint:docker
 
   info:
     desc: "Affiche les informations du projet avec les variables d'environnement"
