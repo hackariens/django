@@ -1,4 +1,3 @@
-version: "3.4"
 networks:
   proxylampy:
     external: true
@@ -13,9 +12,6 @@ services:
     volumes:
       - ${PWD}/.venv:/.venv:delegated
       - ${PWD}/apps:/app:delegated
-    depends_on:
-      - mariadb
-      - mailhog
     networks:
       - serverlampy
       - proxylampy
