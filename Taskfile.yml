@@ -39,6 +39,8 @@ tasks:
     preconditions:
       - sh: command -v actionlint
         msg: "actionlint n'est pas installé. Veuillez l'installer"
+      - sh: command -v docker
+        msg: "Docker n'est pas installé. Veuillez l'installer"
     cmds:
     - task: lint:yml
       vars:
