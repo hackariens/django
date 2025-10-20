@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Templates pour la création d'un nouveau projet django",
   "scripts": {
-    "lint:markdown": "markdownlint README.md",
     "release": "release-it"
   },
   "repository": {
