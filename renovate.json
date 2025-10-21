@@ -15,8 +15,7 @@
       "matchFiles": [".nvmrc"],
       "matchPackageNames": ["node"],
       "extractVersion": "^v?(?<version>\\d+\\.\\d+\\.\\d+)$",
-      "depType": "engines",
-      "datasource": "node",
+    "depType": "engines",
       "versioning": "node",
       "enabled": true,
       "groupName": "Update Node.js version (.nvmrc)"
