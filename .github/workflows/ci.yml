@@ -117,7 +117,7 @@ jobs:
           task django:waiting
       
       - name: Run Cypress tests
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7.4.3
         continue-on-error: true
         with:
           wait-on-timeout: 120
